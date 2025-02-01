@@ -1,0 +1,31 @@
+{
+  "name": "react-codebase",
+  "version": "1.0.0",
+
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build" : "npx parcel build index.html" ,
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/sayanth-t/react-codebase.git)"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "sayanth t",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "browserslist" : [
+    "last 3 versions"
+  ]
+}

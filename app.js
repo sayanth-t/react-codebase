@@ -1,22 +1,29 @@
-// in the case of nested div
-/* 
-<div id="parent">
-    <div id="child">
-        <h1>
-            hello worlddd
-        </h1>
-        <h1>
-            its meee
-        </h1>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+// React functional component
+const Heading = () => {
+  return <h1>hello this is Functional componentt</h1>;
+};
+
+const text = <span>Namaste guyzz</span>;
+
+const elem = () => (
+  <div>
+    <h4>{text}Whats the matter broww?</h4>
+  </div>
+);
+
+const Body = () => {
+  return (
+    <div>
+      <Heading />
+      {Heading()}
+      <h3>this is our second componenttt</h3>
     </div>
-</div>
-*/
+  );
+};
 
+const root = ReactDOM.createRoot(document.getElementById('root')); // when we render then heading becomes html element
 
-const parent = React.createElement("div",{id:"parent"} , React.createElement("div",{id:"child"} , [React.createElement("h1",{id:"hello-text"} , "hello worldd" ),React.createElement("h1",{id:"hello-text"} , "its me" )] ) ) ;
-
-console.log('parent --- ',parent)
-
-const root = ReactDOM.createRoot(document.getElementById("root")) ;
-
-root.render(parent)
+root.render(<Body/>);
