@@ -1,3 +1,5 @@
+import {LOGO_URL} from '../utils/constants';
+
 // header component
 const Header = () => {
     return (
@@ -5,8 +7,8 @@ const Header = () => {
         <div className="logo-container">
           <img
             className="logo"
-            src="https://img.freepik.com/free-vector/sticker-template-with-delivery-man-motor-scooter_1308-76822.jpg?uid=R170678758&ga=GA1.1.282583069.1728974686&semt=ais_hybrid"
-            alt="LOGO"
+            src = {LOGO_URL}
+            alt = "LOGO"
           />
         </div>
         <div className="nav-items-container">
