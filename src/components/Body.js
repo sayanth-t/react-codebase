@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 import RestaurentCard from './RestCard';
 
-import restList from '../utils/mockData';
+import {TopRestList} from '../utils/mockData';
+import {restaurents} from '../utils/mockData' ;
 
 // body component
 const Body = () => {
 
-  const [restaurents,setRest] = useState(restList) ;
+  const [ restList , setRestList ] = useState(restaurents) ;
+ 
+  useEffect(()=>{
+    console.log('use Effect iam here') ;
+  },[])
 
   return (
     <div className="body">
@@ -15,7 +20,7 @@ const Body = () => {
 
       <h2>Top restaurant chains in Kannur</h2>
       <div className="top-rest-container">
-        {restaurents.map((rest) => (
+        {TopRestList.map((rest) => (
           <RestaurentCard key={rest.info.id} restData={rest} />
         ))}
       </div>
@@ -30,7 +35,7 @@ const Body = () => {
               restFiltered = restaurents.filter(
                 (rest) => rest.info.avgRating >= 4.5
               );
-              setRest(restFiltered)
+              setRestList(restFiltered) ;
 
             }}
           >
@@ -39,7 +44,7 @@ const Body = () => {
         </div>
       </div>
       <div className="food-container">
-        {restaurents.map((rest) => (
+        {restList.map((rest) => (
           <RestaurentCard key={rest.info.id} restData={rest} />
         ))}
       </div>
@@ -47,4 +52,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Body ;
