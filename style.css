@@ -23,9 +23,20 @@ h1,h2,h3,h4,h5,h6 {
     list-style-type: none ;
 }
 
-.search{
+.search-container{
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 20px ; 
+}
+
+.input-search{
+    padding: 10px;
+    border: solid 1px rgb(216, 216, 216);
+    border-radius: 5px;
+}
+.search-btn{
+    padding: 10px;
+    border: solid 1px rgb(216, 216, 216);
+    border-radius: 5px;
 }
 
 .top-rest-container{
@@ -83,11 +94,9 @@ h1,h2,h3,h4,h5,h6 {
 
 .body{
     padding: 0px 140px;
-    
 }
 
 .food-container{
-    
     display: flex;
     flex-wrap: wrap;
     column-gap: 20px;
@@ -98,3 +107,71 @@ h1,h2,h3,h4,h5,h6 {
     padding-bottom: 20px;
     display: flex;
 }
+
+/* shimmer */
+
+.shimmer-search{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    
+    width: 10%;
+    margin-left: 140px;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer-top-rest-text{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(240, 240, 240);
+    width: 20%;
+    margin-left: 140px;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer-rest-card-container{
+    padding: 20px 140px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    overflow : auto;
+    row-gap: 20px;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer-rest-card{
+    width: 250px;
+    height: 240px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer-rest-text{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(240, 240, 240);
+    width: 30%;
+    margin-left: 140px;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer-filter-container{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(240, 240, 240);
+    width: 20%;
+    margin-left: 140px;
+    mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/350% 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+      mask-position: left
+    }
+  }

@@ -1,22 +1,79 @@
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import RestaurentCard from './RestCard';
+import Shimmer from './Shimmer';
 
-import {TopRestList} from '../utils/mockData';
-import {restaurents} from '../utils/mockData' ;
+import { TopRestList } from '../utils/mockData';
+import { restaurents } from '../utils/mockData';
 
 // body component
 const Body = () => {
+  
+  const [restList, setRestList] = useState([]);
 
-  const [ restList , setRestList ] = useState(restaurents) ;
- 
-  useEffect(()=>{
-    console.log('use Effect iam here') ;
-  },[])
+  const [ filterdRestList , setfilterdRestList ] = useState([]) ;
+
+  const [searchValue, setSearchValue] = useState('');
+
+  console.log('body renderingg!!!') ;
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=11.8744775&lng=75.37036619999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+    );
+
+    const jsonData = await data.json();
+    console.log(
+      'fetch data -- ',
+      jsonData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setRestList(
+      jsonData.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setfilterdRestList(
+      jsonData.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    )
+  };
+
+  // showing restList is loading => CONDETIONAL RENDERING
+  if (restList.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body">
-      <div className="search">Search</div>
+      <div className="search-container">
+
+        <input
+          type="text"
+          placeholder="Search Restuarents"
+          className="input-search"
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
+        ></input>
+
+        <button
+          className="search-btn"
+          onClick={() => {
+            
+            const searchRest = restList.filter( (rest)=> rest.info.name.toLowerCase().includes(searchValue.toLowerCase().trim()) ) ;
+            setfilterdRestList(searchRest) ;
+            
+
+          }}
+        >
+          Search
+        </button>
+
+      </div>
 
       <h2>Top restaurant chains in Kannur</h2>
       <div className="top-rest-container">
@@ -31,12 +88,10 @@ const Body = () => {
           <button
             className="filter-btn"
             onClick={() => {
-
-              restFiltered = restaurents.filter(
+              const restFiltered = restaurents.filter(
                 (rest) => rest.info.avgRating >= 4.5
               );
-              setRestList(restFiltered) ;
-
+              setRestList(restFiltered);
             }}
           >
             Top Rated
@@ -44,7 +99,7 @@ const Body = () => {
         </div>
       </div>
       <div className="food-container">
-        {restList.map((rest) => (
+        {filterdRestList.map((rest) => (
           <RestaurentCard key={rest.info.id} restData={rest} />
         ))}
       </div>
@@ -52,4 +107,4 @@ const Body = () => {
   );
 };
 
-export default Body ;
+export default Body;
